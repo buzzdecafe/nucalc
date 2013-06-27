@@ -1,0 +1,28 @@
+{
+  "author": "buzzdecafe <m_hur@yahoo.com> (buzzdecafe.com)",
+  "name": "NuCalc",
+  "description": "NuFern Laser Calculator",
+  "version": "0.0.1",
+  "homepage": "https://www.github.com/buzzdecafe/nucalc",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/buzzdecafe/nucalc.git"
+  },
+  "main": "main.js",
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-recess": "~0.3.0",
+    "grunt-contrib-clean": "~0.4.1",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-jshint": "~0.4.3",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-watch": "~0.4.0",
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-karma": "~0.4.4",
+    "grunt-ngmin": "0.0.2",
+    "grunt-html2js": "~0.1.3"
+  }
+}

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+  <meta charset="utf-8">
+  <title>Nufern Laser Calculator</title>
+  <link rel="stylesheet" href="css/nucalc.css"/>
+  <script src="lib/angular/angular.js"></script>
+  <script src="js/controllers/PulsesCtrl.js"></script>
+  <style>
+    .dragbox {
+      width: 80%;
+      height: 36px;
+      margin:auto;
+      border: 1px solid red;
+      background-image: url(img/numlog_up_asc.svg);
+      background-repeat: no-repeat;
+    }
+  </style>
+</head>
+<body>
+
+  <div ng-controller="PulsesCtrl">
+    {{label}}
+
+    <p>
+    <input type="text" value="{{v}}" ng-model-instant />
+    </p>
+    <p>
+    <button class="btn" ng-click="inc()">Add</button>
+    </p>
+    <div class="dragbox" 
+         ng-mousedown="startdrag($event)" 
+         ng-mousemove="drag($event)" 
+         ng-mouseup="stopdrag($event)" 
+         ng-mouseout="stopdrag($event)">Drag me</div>
+    <p>Dragged: startX: {{startX}} - deltaX {{deltaX}} :: bgPos: {{bgPos}}</p>
+  </div>
+
+  <ruler direction="up" rid="pulseEnergy"></ruler>
+</body>
+</html>
