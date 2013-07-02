@@ -1,7 +1,7 @@
 body {
     margin: 0;
 }
-.r {
+.ruler {
     width: 100%;
     height: 2.5em;
     background-repeat: repeat-x;
@@ -23,10 +23,10 @@ body {
 .centerline-short {
     height: 2.5em;
 }
-.bgup {
+.ruler-up {
     background-image: url(../img/numlog_up_asc.svg);
 }
-.bgdn {
+.ruler-down {
     background-image: url(../img/numlog_dn_asc.svg);
 }
 .display {
@@ -34,4 +34,11 @@ body {
 }
 
 
-
+.thin {
+  margin: 0;
+  padding: 0;
+}
+.down-up,
+.up-down {
+  display: none;
+}
