@@ -14,7 +14,14 @@ nucalc.config(['$routeProvider', function($routeProvider) {
 
 nucalc.controller("RulerCtrl", function($scope) {
   $scope.prop = "Ruler Controller";
-  $scope.bgPos = "ctrl";
+  $scope.value = 1;
+  $scope.setValue = function(currPos) {
+    $scope.value = currPos - $scope.startPos;
+    console.log("value", $scope.value);
+  };
+  $scope.$watch("value", function(newV, oldV) {
+    console.log("updated");
+  }, true);
 });
 
 nucalc.directive("ruler", function() {
@@ -22,7 +29,6 @@ nucalc.directive("ruler", function() {
   var midPx = mid + "px";
   
   return {
-    controller: "RulerCtrl",
     restrict: "E",
     replace: true,
     scope: { 
@@ -37,7 +43,8 @@ nucalc.directive("ruler", function() {
 
       return function postLink(scope, $element, attrs, ctrl) {
         var elm = $element[0];
-        scope.startPos = mid;
+        var $parent = scope.$parent;
+        $parent.startPos = mid;
 
         function out($event) {
           if (dragging) {
@@ -54,8 +61,9 @@ nucalc.directive("ruler", function() {
         $element.bind("mousemove", function($event) {
           if (dragging) {
             deltaX = $event.clientX - startX;
-            scope.bgPos = bgPos + deltaX;
-            elm.style.backgroundPositionX = scope.bgPos + "px";        
+            $parent.bgPos = bgPos + deltaX;
+            $parent.setValue($parent.bgPos);
+            elm.style.backgroundPositionX = $parent.bgPos + "px";        
           }
         });
   
@@ -66,6 +74,17 @@ nucalc.directive("ruler", function() {
       }
     },
     templateUrl: "js/partials/ruler.html",
+  };
+});
+
+nucalc.directive("rulerValue", function() {
+  return {
+    restrict: "E",
+    replace: true,
+    scope: {
+      val: "@"
+    },
+    templateUrl: "js/partials/rulerValue.html"
   };
 });
 

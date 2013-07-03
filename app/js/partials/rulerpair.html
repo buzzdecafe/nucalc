@@ -3,14 +3,14 @@
   <div class="ruler-group-wrap"> 
     <div class="centerline ignore"></div>
 
-    <div class="ruler-wrap">
-      <input type="text" class="display display-over" id="{{top}}-value" name="{{top}}-value" value="{{bgPos}}" />
+    <div class="ruler-wrap" ng-controller="RulerCtrl">
+      <input type="text" class="display display-over" id="{{top}}-value" name="{{top}}-value" ng-model="value" />
       <div class="thin"><ruler rid="{{top}}" direction="down" /></div>
     </div>
 
-    <div class="ruler-wrap">
+    <div class="ruler-wrap" ng-controller="RulerCtrl">
       <div class="thin"><ruler rid="{{bottom}}" direction="up" /></div>
-      <input type="text" class="display display-under" id="{{bottom}}-value" name="{{bottom}}-value" />
+      <input type="text" class="display display-under" id="{{bottom}}-value" name="{{bottom}}-value" ng-model="value" />
     </div>
 
   </div>
