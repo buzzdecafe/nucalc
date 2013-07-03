@@ -14,30 +14,35 @@ nucalc.config(['$routeProvider', function($routeProvider) {
 
 nucalc.controller("RulerCtrl", function($scope) {
   $scope.prop = "Ruler Controller";
+  $scope.bgPos = "ctrl";
 });
 
 nucalc.directive("ruler", function() {
-  var mid = (window.innerWidth/2 >> 0) + "px";
+  var mid = (window.innerWidth/2 >> 0);
+  var midPx = mid + "px";
+  
   return {
+    controller: "RulerCtrl",
     restrict: "E",
     replace: true,
     scope: { 
       direction: "@",
-      rid:"@"
+      rid: "@"
     },
     compile: function(elem, attrs, xclude) {
-      var dragging, startX, deltaX, bgPos;
+      var dragging, startX, deltaX, bgPos = mid;
       
       // align ruler left edge to center
-      elem[0].style.backgroundPositionX = bgPos = mid;
+      elem[0].style.backgroundPositionX = midPx;
 
-      // return postLink function
-      return function postLink(scope, $element, attrs) {
-        var elem = $element[0];
+      return function postLink(scope, $element, attrs, ctrl) {
+        var elm = $element[0];
+        scope.startPos = mid;
 
         function out($event) {
-          dragging = false;
-          bgPos = parseInt(elem.style.backgroundPositionX, 10);
+          if (dragging) {
+            dragging = false;
+          }
         }
 
         $element.bind("mousedown", function($event) {
@@ -49,12 +54,13 @@ nucalc.directive("ruler", function() {
         $element.bind("mousemove", function($event) {
           if (dragging) {
             deltaX = $event.clientX - startX;
-            elem.style.backgroundPositionX = (bgPos + deltaX) + "px";        
+            scope.bgPos = bgPos + deltaX;
+            elm.style.backgroundPositionX = scope.bgPos + "px";        
           }
         });
   
         $element.bind("mouseup", out);
-        
+        $element.bind("mouseleave", out);
         $element.bind("mouseout", out);
 
       }
@@ -68,8 +74,9 @@ nucalc.directive("rulerPair", function() {
     restrict: "E",
     replace: true,
     scope: {
+      title: "@",
       top: "@",
-      bottom: "@"
+      bottom: "@",
     },
     templateUrl: "js/partials/rulerpair.html"
   };
