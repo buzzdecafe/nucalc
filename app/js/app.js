@@ -73,6 +73,11 @@ nucalc.directive("ruler", function() {
 
       }
     },
+    link: function(scope, element, attrs) {
+      scope.$watch("value", function(newV, oldV) {
+        console.log("directive watch fired", scope.$id);  
+      });          
+    },
     templateUrl: "js/partials/ruler.html",
   };
 });
