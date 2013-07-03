@@ -17,11 +17,9 @@ nucalc.controller("RulerCtrl", function($scope) {
   $scope.value = 1;
   $scope.setValue = function(currPos) {
     $scope.value = currPos - $scope.startPos;
-    console.log("value", $scope.value);
+    $scope.$apply();
   };
-  $scope.$watch("value", function(newV, oldV) {
-    console.log("updated");
-  }, true);
+  $scope.$watch("value", function(newV, oldV) { }, true);
 });
 
 nucalc.directive("ruler", function() {
@@ -73,11 +71,11 @@ nucalc.directive("ruler", function() {
 
       }
     },
-    link: function(scope, element, attrs) {
-      scope.$watch("value", function(newV, oldV) {
-        console.log("directive watch fired", scope.$id);  
-      });          
-    },
+    //link: function(scope, element, attrs) {
+    //  scope.$watch("value", function(newV, oldV) {
+    //    console.log("directive watch fired", scope.$id);  
+    //  });          
+    //},
     templateUrl: "js/partials/ruler.html",
   };
 });
