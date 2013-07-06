@@ -4,6 +4,7 @@ body {
 .ruler {
     width: 100%;
     height: 2.5em;
+    background-color: #fff;
     background-repeat: repeat-x;
     background-position: 0 0;
 }
@@ -11,6 +12,10 @@ body {
     position: relative;
     text-align: center;
     clear: both;
+}
+.ruler-wrap {
+    position: relative;
+    height: 2.5em;
 }
 .centerline {
     width: 1px;
@@ -30,15 +35,17 @@ body {
     background-image: url(../img/numlog_dn_asc.svg);
 }
 .display {
-    margin-left: -50%;
+  position: absolute;
+  left: 0;
+  width: 8em;
 }
-
-
+.display-over {
+}
+.display-under {
+  top:1.2em;
+}
 .thin {
   margin: 0;
   padding: 0;
 }
-.down-up,
-.up-down {
-  display: none;
-}
+

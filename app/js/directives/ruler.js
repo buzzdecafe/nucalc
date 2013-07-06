@@ -23,10 +23,12 @@ nucalc.directive("ruler", function() {
         var elm = $element[0];
         var $parent = scope.$parent;
         $parent.startPos = mid;
+        $parent.bgPos = mid;
 
         function out($event) {
           if (dragging) {
             dragging = false;
+            bgPos = $parent.bgPos;
           }
         }
 
