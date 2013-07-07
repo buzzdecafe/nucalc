@@ -18,12 +18,14 @@ body {
     height: 2.5em;
 }
 .centerline {
-    width: 1px;
-    background-color: rgba(127, 0, 0, 0.5);
+    width: 6em;
+    background-color: transparent;
     height: 7em;
     float: left;
     margin-left: 50%;
-    margin-top:0.5em;
+    margin-top:-1em;
+    background-image:url(../img/arrows.svg);
+    background-repeat:no-repeat;
 }
 .centerline-short {
     height: 2.5em;
